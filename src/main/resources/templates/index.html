@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Simple Sample UI</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="/css/index.css" th:href="@{/css/index.css}" />
+    <!--    <link rel="stylesheet" href="/Users/jan/IdeaProjects/BudgetCalcWebApp/src/main/resources/static/css/index.css">-->
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+    <!--    <script type="text/javascript" src="/Users/jan/IdeaProjects/BudgetCalcWebApp/src/main/resources/static/actions.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+
+<div class="mainContainer">
+
+    <table id="mainTable">
+        <thead>
+        <tr>
+            <th>Sample Title</th>
+            <th>Sample Description</th>
+            <th>Sample Number</th>
+        </tr>
+        </thead>
+
+        <tr>
+            <td><input type="text" placeholder="Sample Title" id="titleTD"></td>
+            <td><input type="text" placeholder="Sample Description" id="descriptionTD"></td>
+            <td><input type="number" placeholder="Sample Number" id="numberTD"></td>
+        </tr>
+
+    </table>
+    <div class="buttonsContainer">
+        <div id="buttons-hbox">
+<!--            <button type="button" onclick="removeSample()">Remove Sample</button>-->
+            <button type="button" onclick="addSample()">Add Sample</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="resultArea" id="resultContainer" style="visibility: hidden">
+</div>
+
+</body>
+</html>
