@@ -120,6 +120,7 @@ class SampleControllerImplIT {
         var persistedSample = sampleRepository.findAll().stream().findFirst().orElseThrow();
 
         // when
+
         // then
         assertDoesNotThrow(() -> {
             restTemplate.delete(SAMPLES + "/" + persistedSample.getId());
