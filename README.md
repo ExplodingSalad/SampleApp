@@ -1,2 +1,1 @@
-just a small sample for a REST endpoint
-
+just a small sample for a REST endpoint, including a build-test-release-deploy pipeline
