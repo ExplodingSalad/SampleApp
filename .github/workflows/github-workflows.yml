@@ -9,9 +9,5 @@ on:
       - master
 
 jobs:
-  build-and-test:
-    uses: ExplodingSalad/SampleCICD/.github/workflows/build-and-test.yml@master
-  # Creates  GitHub release, builds and pushes a docker image
-  release:
-    if: github.event_name == 'push'
-    uses: ExplodingSalad/SampleCICD/.github/workflows/release.yml@master
+  template-pipeline:
+    uses: ExplodingSalad/SampleCICD/.github/workflows/github-actions-template.yml@master
