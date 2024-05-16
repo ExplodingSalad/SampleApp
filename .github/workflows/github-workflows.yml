@@ -8,8 +8,9 @@ on:
     branches:
       - master
 
-jobs: 
+jobs:
   build-and-test:
-    # Importing a reusable workflow from another repository and branch
-    # uses: organization/repo/.github/workflows/build-test-deploy.yml@main
-    uses: ExplodingSalad/SampleCICD/.github/workflows/github-workflow.yml@master
+    uses: ExplodingSalad/SampleCICD/.github/workflows/build-and-test.yml@master
+  release:
+    if: github.event_name == 'push'
+    uses: ExplodingSalad/SampleCICD/.github/workflows/release.yml@master
