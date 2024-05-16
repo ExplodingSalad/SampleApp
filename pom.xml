@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.zenyera</groupId>
-    <artifactId>ZenyeraDataProvider</artifactId>
+    <artifactId>zenyeradataprovider</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>ZenyeraDataProvider</name>
+    <name>zenyeradataprovider</name>
     <description>ZenyeraDataProvider</description>
 
     <properties>
