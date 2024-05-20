@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zenyeradataprovider
+spec:
+  selector:
+    matchLabels:
+      app: zenyeradataprovider
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zenyeradataprovider
+    spec:
+      containers:
+        - name: zenyeradataprovider
+          image: explodingsalad/zenyeradataprovider:latest
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zenyeradataprovider-service
+spec:
+  selector:
+    app: zenyeradataprovider
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: zenyeradataprovider-route
+spec:
+  to:
+    kind: Service
+    name: zenyeradataprovider-service
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
+  wildcardPolicy: None
