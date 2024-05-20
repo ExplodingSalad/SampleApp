@@ -47,7 +47,5 @@ spec:
     kind: Service
     name: zenyeradataprovider-service
   port:
-    targetPort: 80
-  tls:
-    termination: edge
+    targetPort: 8080
   wildcardPolicy: None
