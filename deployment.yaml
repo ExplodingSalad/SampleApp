@@ -15,6 +15,7 @@ spec:
       containers:
         - name: zenyeradataprovider
           image: explodingsalad/zenyeradataprovider:latest
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80
