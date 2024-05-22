@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zenyeradataprovider
-          image: explodingsalad/zenyeradataprovider:latest
+          image: explodingsalad/zenyeradataprovider:{{IMAGE_TAG}}
           imagePullPolicy: Always
           ports:
             - name: http
