@@ -1,0 +1,82 @@
+# We only create a new Deployment and a new Service, the route will be left untouched
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zenyeradataprovider-{{IMAGE_TAG_DASHERIZED}}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: zenyeradataprovider-{{IMAGE_TAG_DASHERIZED}}
+  template:
+    metadata:
+      labels:
+        app: zenyeradataprovider-{{IMAGE_TAG_DASHERIZED}}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: zenyeradataprovider
+          image: explodingsalad/zenyeradataprovider:{{IMAGE_TAG}}
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  if [ ! -f /tmp/healthy ]; then
+                    echo "Liveness probe failed!"
+                    exit 1
+                  fi
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 1
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  if [ ! -f /tmp/ready ]; then
+                    echo "Readiness probe failed!"
+                    exit 1
+                  fi
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 1
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - "touch /tmp/healthy; touch /tmp/ready"
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - "rm -f /tmp/healthy; rm -f /tmp/ready"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zenyeradataprovider-{{IMAGE_TAG_DASHERIZED}}-service
+spec:
+  selector:
+    app: zenyeradataprovider-{{IMAGE_TAG_DASHERIZED}}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
