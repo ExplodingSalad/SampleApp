@@ -15,6 +15,8 @@ public class CrashController {
     @GetMapping("/crash")
     public void crash() {
         logger.info("Attempting to forcefully crash the app for showcasing purposes...");
+        logger.info("Shutting down...");
+        System.exit(1);
         throw new RuntimeException("Forced application crash");
     }
 

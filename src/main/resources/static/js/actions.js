@@ -1,8 +1,5 @@
 function addSample() {
 
-    const table = document.getElementById("mainTable");
-    // const name = table.rows[0].cells[0].firstChild.value;
-
     const name = document.getElementById('titleTD').value;
     const description = document.getElementById('descriptionTD').value;
     const number = document.getElementById('numberTD').value;
