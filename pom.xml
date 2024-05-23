@@ -12,7 +12,7 @@
 
     <groupId>com.zenyera</groupId>
     <artifactId>zenyeradataprovider</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.8-SNAPSHOT</version>
     <name>zenyeradataprovider</name>
     <description>ZenyeraDataProvider</description>
 
